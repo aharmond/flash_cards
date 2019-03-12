@@ -30,7 +30,7 @@ class FlashCard extends React.Component  {
               <Form.Group widths="equal">
                 <Form.Input
                   fluid
-                  label="term"
+                  label="Term"
                   placeholder="Term"
                   name="term"
                   value={this.state.term}
