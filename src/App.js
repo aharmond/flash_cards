@@ -11,20 +11,18 @@ class App extends React.Component {
     ],
   };
 
-  addCard = (newcard) => {
-    let card = { id: this.getId(), ...newcard, };
+  addCard = (cardData) => {
+    const card = { id: this.getId(), ...cardData, };
     this.setState({ flashcards: [...this.state.flashcards, card, ], });
   };
 
-  editCard = (id, term, answer) => {
-    const flashcards = this.state.flashcards.filter( flashcard => {
-      if (flashcard.id === id)
-        flashcard.term = term
-        flashcard.answer = answer
-        flashcard.id = this.getId()
-        return flashcard
+  editCard = (cardData) => {
+    const flashcards = this.state.flashcards.map( flashcard => {
+      if (flashcard.id === cardData.id)
+        return cardData
+      return flashcard
       })
-      this.setState(flashcards)
+      this.setState({ flashcards })
   };
 
   getId = () => {
