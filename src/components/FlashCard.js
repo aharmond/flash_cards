@@ -12,32 +12,31 @@ class FlashCard extends React.Component  {
   toggleSide = () => this.setState({ side: !this.state.side, });
 
   render() {  
-    const { remove, term, answer, id, edit } = this.props
-    // const {term, answer, id} = flashcard
+    const { removeCard, term, answer, id } = this.props
 
     return (
       <Card fluid>
         { 
           this.state.edit ?
-            <FlashCardForm  id={id} { ...this.props } edit={edit} toggleEdit={this.toggleEdit} />
+            <FlashCardForm  id={id} { ...this.props } toggleEdit={this.toggleEdit} />
           :
             <Card.Content onClick={this.toggleSide}>  
               { 
                 this.state.side ? 
-                  <Card.Header>{term}</Card.Header> 
+                  <Card.Header >{term}</Card.Header> 
                 : 
-                  <Card.Header>{answer}</Card.Header>
+                  <Card.Header >{answer}</Card.Header>
               }
             </Card.Content>
         }
         <Card.Content extra>
           <div className="ui three buttons">
-            <Button basic color="yellow" onClick={this.toggleEdit}>Edit</Button>
-            <Button basic color="red" onClick={() => remove(id)}>Delete</Button>
+            <Button color="yellow" onClick={this.toggleEdit}>Edit</Button>
+            <Button color="red" onClick={() => removeCard(id)}>Delete</Button>
             { this.state.correct ? 
-              <Button basic color="pink" onClick={this.toggleCorrect}>Correct!</Button>
+              <Button color="pink" onClick={this.toggleCorrect}>Correct!</Button>
             :
-              <Button basic color="purple" onClick={this.toggleCorrect}>Correct?</Button>
+              <Button color="purple" onClick={this.toggleCorrect}>Correct?</Button>
             }
           </div>
         </Card.Content>

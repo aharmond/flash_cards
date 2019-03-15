@@ -6,7 +6,6 @@ class FlashCardForm extends React.Component {
 
   componentDidMount() {
     if (this.props.id) {
-      debugger
       this.setState({ term: this.props.term, answer: this.props.answer })
     }
   };
@@ -15,12 +14,11 @@ class FlashCardForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    debugger
     if (this.props.id) {
-      this.props.edit({id: this.props.id, ...this.state})
+      this.props.editCard({id: this.props.id, ...this.state})
       this.props.toggleEdit()
     } else {
-      this.props.add(this.state)
+      this.props.addCard(this.state)
     }
     this.setState({ term: "", answer: "", })
   };
@@ -46,7 +44,7 @@ class FlashCardForm extends React.Component {
             onChange={this.handleChange}
             />
         </Form.Group>
-        <Form.Button>Submit</Form.Button>
+        <Form.Button inverted >Submit</Form.Button>
       </Form>
     )
   }
